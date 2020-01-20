@@ -48,6 +48,12 @@
     		<artifactId>spring-boot-starter-data-jpa</artifactId>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/org.infinispan/infinispan-core -->
+<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+</dependency>
+	
 	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
 <dependency>
     <groupId>org.springframework.boot</groupId>

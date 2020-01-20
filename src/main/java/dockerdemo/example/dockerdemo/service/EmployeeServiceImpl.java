@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@Cacheable(value="employees")
+	@Cacheable(value="employees", key="#name")
 	public List<Employee> getEmployeeByName(String name) {
 		
 		return employeeRepository.findByName(name);
@@ -53,14 +54,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	@CacheEvict(value = "employees", allEntries=true)
+	@CachePut(value = "employees", key = "#result.id")
 	public Employee saveEmployee(Employee employee) {
 		
 		return employeeRepository.save(employee);
 	}
 
 	@Override
-	@CacheEvict(value = "employees", allEntries=true)
+	@CachePut(value = "employees", key = "#id")
 	public void updateEmployee(Employee employee, int id) {
 		
 		employee.setId(id);
