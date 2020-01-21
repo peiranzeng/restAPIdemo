@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,7 @@ public class DockerController {
 	
 	@GetMapping
 	//applied pagination
+	//implement spring-hateos
 	public ResponseEntity<Page<Employee>> getEmployee(@RequestParam(defaultValue = "0") int offset, @RequestParam(defaultValue = "20") int limit) {
 		
 		
@@ -50,6 +53,14 @@ public class DockerController {
 			
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 			
+		}
+		
+		for(Employee employee : employees) {
+			Link link = ControllerLinkBuilder.linkTo(this.getClass())
+					.slash(employee.getId())
+					.withSelfRel();
+			
+			employee.add(link);
 		}
 		
 		return ResponseEntity.ok(employees);
@@ -66,6 +77,8 @@ public class DockerController {
 		
 		return ResponseEntity.ok(employees);
 	}
+	
+	
 	
 	@DeleteMapping("/{id}")
 	public void DeleteEmployeeById(@PathVariable("id") int id) {

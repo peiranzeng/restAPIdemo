@@ -1,6 +1,7 @@
 package dockerdemo.example.dockerdemo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
@@ -13,6 +14,8 @@ public interface EmployeeService {
 	public Page<Employee> getEmployeesByPage(int offset, int limit);
 	
 	public List<Employee> getEmployeeByName(String name);
+	
+	public Optional<Employee> findEmployeeById(int id);
 	
 	public void deleteEmployeeById(int id);
 	

@@ -1,11 +1,13 @@
 package dockerdemo.example.dockerdemo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@CacheEvict(value = "employees", allEntries=true)
+	@Caching()
 	public void deleteEmployeeById(int id) {
 		employeeRepository.deleteById(id);
 		
@@ -68,6 +71,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		employeeRepository.save(employee);
 		
+	}
+
+	@Override
+	public Optional<Employee> findEmployeeById(int id) {
+		
+		return employeeRepository.findById(id);
 	}
 
 }

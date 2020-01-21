@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -15,7 +17,7 @@ import dockerdemo.example.dockerdemo.util.CustomizeAddressSerializer;
 
 @Entity // we shoud have a key
 //@JsonPropertyOrder({"address", "name"})
-public class Employee implements Serializable {
+public class Employee extends RepresentationModel implements Serializable {
 	
 	@Id
 	@GeneratedValue
