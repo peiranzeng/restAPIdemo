@@ -58,7 +58,28 @@
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 </dependency>
-	
+
+<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-cdi-embedded</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jgroups.aws.s3/native-s3-ping -->
+		<dependency>
+			<groupId>org.jgroups.aws.s3</groupId>
+			<artifactId>native-s3-ping</artifactId>
+			<version>0.9.3.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.86</version>
+		</dependency>
+
 	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -92,7 +113,64 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- <plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.27.2</version>
+				<configuration>
+
+					<dockerHost>https://127.0.0.1:2376</dockerHost>
+					this is for Mac and Amazon Linux
+					<dockerHost>unix:///var/run/docker.sock</dockerHost>
+
+					<verbose>true</verbose>
+
+					Needed if pushing to DockerHub: preferred to store these in local 
+						environment (see the course)
+						
+
+					<images>
+						<image>
+							<name>pzeng66/restfulAPIdemo</name>
+							<build>
+								<dockerFileDir>${project.basedir}/src/main/resources/</dockerFileDir>
+								
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<tags>
+									<tag>latest</tag>
+								</tags>
+							</build>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>mydeploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin> -->
 		</plugins>
+		<finalName>
+	        dockerdemo
+		</finalName>
 	</build>
 
 </project>

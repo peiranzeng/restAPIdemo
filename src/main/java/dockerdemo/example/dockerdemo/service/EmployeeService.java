@@ -22,4 +22,6 @@ public interface EmployeeService {
 	public Employee saveEmployee(Employee employee);
 	
 	public void updateEmployee(Employee employee, int id);
+	
+	public Employee getEmployeeByCity(String city);
 }

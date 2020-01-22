@@ -74,9 +74,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Cacheable(value = "employees", key = "#id")
 	public Optional<Employee> findEmployeeById(int id) {
 		
 		return employeeRepository.findById(id);
+	}
+
+	@Override
+	public Employee getEmployeeByCity(String city) {
+		
+		return null;
 	}
 
 }

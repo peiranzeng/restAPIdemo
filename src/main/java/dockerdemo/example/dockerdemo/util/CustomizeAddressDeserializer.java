@@ -14,7 +14,7 @@ import dockerdemo.example.dockerdemo.model.Address;
 @JsonComponent
 public class CustomizeAddressDeserializer extends StdDeserializer<Address>{
 
-	protected CustomizeAddressDeserializer(Class<?> vc) {
+	public CustomizeAddressDeserializer(Class<?> vc) {
 		super(vc);
 		// TODO Auto-generated constructor stub
 	}

@@ -15,7 +15,7 @@ import dockerdemo.example.dockerdemo.model.Address;
 @JsonComponent
 public class CustomizeAddressSerializer extends StdSerializer<Address> {
 
-	protected CustomizeAddressSerializer() {
+	public CustomizeAddressSerializer() {
 		this(null);
 	}
 

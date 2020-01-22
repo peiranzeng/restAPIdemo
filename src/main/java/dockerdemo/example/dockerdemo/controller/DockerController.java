@@ -78,6 +78,12 @@ public class DockerController {
 		return ResponseEntity.ok(employees);
 	}
 	
+	@GetMapping("/{id}")
+	public Employee getEmployeeById(@PathVariable() int id) {
+		
+		return employeeService.findEmployeeById(id).get();
+	}
+	
 	
 	
 	@DeleteMapping("/{id}")
